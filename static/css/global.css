@@ -1,0 +1,62 @@
+:root{
+  --primary-color: #00A6FF;
+  --text-dark: hsl(0, 0%, 11.37%);
+  --text-light: hsl(0, 0%, 100%);
+  --background-light: hsl(0 0% 96.5%);
+  --background-dark: #212121;
+  --line-height-mobile: 1.5;
+  --font: jakarta, sans-serif;
+
+  /* ---------- Font sizes ---------- */
+  --text-xs3: 0.75em; /* 12px */
+  --text-xs2: 0.875em; /* 14px */
+  --text-xs: 1em; /* 16px */
+  --text-s: 1.0625em; /* 17px */
+  --text-sm: 1.25em; /* 20px */
+  --text-md: 1.5em; /* 24px */
+  --text-lg: 1.625em; /* 26px */
+
+
+  
+
+/* --- spacing --- */
+--spacing-header-md: 0 0 1em 0.5em;
+
+--spacing-section-md: 0 0 3em 0;
+
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font);
+  background-color: var(--background-light);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+
+p {
+  line-height: var(--line-height-mobile);
+  font-size: var(--font-size-mobile);
+  color: var(--text-light);
+}
+
+h1 {
+  color: var(--text-light);
+}
+
+h2 {
+  color: var(--primary-color);
+  margin: var(--spacing-header-md);
+}
+
+section, article {
+  margin: var(--spacing-section-md);
+}
