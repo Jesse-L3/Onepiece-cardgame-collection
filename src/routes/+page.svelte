@@ -52,7 +52,7 @@
 
 <h1>Alle One Piece TCG Kaarten</h1>
 
-<ul>
+<!-- <ul>
   {#each cards as card}
     <li>
       <picture>
@@ -63,12 +63,45 @@
       <p>{card.card_set_id} – {card.card_name} ({card.set_name})</p>
     </li>
   {/each}
+</ul> -->
+
+<ul>
+  {#each Array(200) as _, i}
+    <li>
+      <div>
+        <img src="./images/OP01-003.jpg" alt="Kaart {i + 1}" width="200" />
+        <div class="hover-blocks">
+        {#each Array(9) as _, index }
+        <div class="hover-block number{index}" data-index={index}></div>
+        {/each}
+        </div>
+      </div>
+      <p>SET-{i + 1} – Card {i + 1} (Dummy Set)</p>
+    </li>
+  {/each}
 </ul>
 
+
 <style>
+
+  @property --text-animations {
+    syntax: "<angle>";
+    inherits: true;
+    initial-value: 0deg;
+  }
+
   h1 {
     text-align: center;
     margin-bottom: 1em;
+    animation: growshrink 0.7s ease-in-out;
+    animation-iteration-count: 5;
+    transform: rotate(var(--text-animations));
+  }
+
+  @keyframes growshrink {
+    to{
+      --text-animations: 360deg;
+    }
   }
 
   ul {
@@ -83,20 +116,28 @@
     }
   }
 
-   @property --card-rotation {
-    syntax: "<angle>";
-    inherits: true;
-    initial-value: "0deg";
+   @property --card-content {
+    syntax: "<number> | <color> | <angle>";
+    inherits: false;
+    initial-value: red;
   }
-
+ 
   li {
+    --card-content: 20deg;
     text-align: center;
     padding: 0.5em;
     border-radius: 8px;
     animation: fadeIn 1s forwards;
-    animation-delay: 1s;
-    transform: rotate(var(--card-rotation));
+    animation-delay: 0.5s;
+    position: relative;
+    transition: transform 0.3s ease; 
   }
+
+
+  li p {
+    color: var(--card-content);
+  }
+
 
   @keyframes fadeIn {
  from {
@@ -104,16 +145,72 @@
   }
   to {
     opacity: 1;
-    --card-rotation: 5deg;
   }
 }
 
   img {
     aspect-ratio: 300 / 419;
+    height: auto;
+    width: 200px;
+    position: relative;
 
     @media (min-width: 1080px) {
       width: 400px;
     }
   }
+
+  .hover-blocks {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    pointer-events: all; 
+  }
+
+  .hover-block{
+    z-index: 100;
+    pointer-events: all;
+  }
   
+
+li:has(.hover-block.number0:hover) { 
+  transform: rotateX(var(--card-content)) rotateY(calc(-1 * var(--card-content))); 
+} 
+
+li:has(.hover-block.number1:hover) { 
+  transform: rotateX(var(--card-content)) rotateY(0deg); 
+}  
+
+li:has(.hover-block.number2:hover) { 
+  transform: rotateX(var(--card-content)) rotateY(var(--card-content)); 
+}  
+
+li:has(.hover-block.number3:hover) { 
+  transform: rotateX(0deg) rotateY(calc(-1 * var(--card-content))); 
+}  
+
+li:has(.hover-block.number4:hover) { 
+  transform: rotateX(0deg) rotateY(0deg); 
+}
+
+li:has(.hover-block.number5:hover) { 
+  transform: rotateX(0deg) rotateY(var(--card-content)); 
+}   
+
+li:has(.hover-block.number6:hover) { 
+  transform: rotateX(calc(-1 * var(--card-content))) rotateY(calc(-1 * var(--card-content))); 
+} 
+
+li:has(.hover-block.number7:hover) { 
+  transform: rotateX(calc(-1 * var(--card-content))) rotateY(0deg); 
+} 
+
+li:has(.hover-block.number8:hover) { 
+  transform: rotateX(calc(-1 * var(--card-content))) rotateY(var(--card-content)); 
+}  
+
 </style>
