@@ -55,11 +55,18 @@
 <!-- <ul>
   {#each cards as card}
     <li>
+      <div>
       <picture>
         <source srcset={card.card_image} type="image/webp" />
         <source srcset={card.card_image} type="image/jpeg" />
-        <img src={card.card_image} alt={card.card_name} width="200" />
+        <img src={card.card_image} alt={card.card_name} loading="lazy" width="200" />
       </picture>
+      <div class="hover-blocks">
+        {#each Array(9) as _, index }
+        <div class="hover-block number{index}" data-index={index}></div>
+        {/each}
+        </div>
+      </div>
       <p>{card.card_set_id} – {card.card_name} ({card.set_name})</p>
     </li>
   {/each}
@@ -89,6 +96,7 @@
     inherits: true;
     initial-value: 0deg;
   }
+  
 
   h1 {
     text-align: center;
