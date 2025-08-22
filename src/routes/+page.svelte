@@ -160,7 +160,6 @@
     animation: straighten linear both;
     animation-timeline: view();
     /* animation-range: entry 0% cover 50%; */
-    animation-range: entry 0% exit 100%;
     /* animation-range: entry 40% exit 50%; */
     transform: rotate(var(--card-content));
 }
