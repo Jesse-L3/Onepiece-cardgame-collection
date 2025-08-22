@@ -172,22 +172,20 @@
   }
 } */
 
-@keyframes straighten{
-  0% {
-    --card-content: 10deg;
-    scale: 0.8;
+  @keyframes straighten{
+    0% {
+      --card-content: 10deg;
+      scale: 0.8;
+    }
+    50% {
+      --card-content: 0deg;
+      scale: 1;
+    }
+    100% {
+      --card-content: 10deg;
+      scale: 0.8; 
+    }
   }
-  50% {
-    --card-content: 0deg;
-    scale: 1;
-  }
-  100% {
-    --card-content: 10deg;
-    scale: 0.8; 
-}
-
-}
-
 }
 
   img {
@@ -219,40 +217,40 @@
   }
   
 
-li:has(.hover-block.number0:hover) { 
-  transform: rotateX(var(--card-content)) rotateY(calc(-1 * var(--card-content))); 
-} 
+  li:has(.hover-block.number0:hover) { 
+    transform: rotateX(var(--card-content)) rotateY(calc(-1 * var(--card-content))); 
+  } 
 
-li:has(.hover-block.number1:hover) { 
-  transform: rotateX(var(--card-content)) rotateY(0deg); 
-}  
+  li:has(.hover-block.number1:hover) { 
+    transform: rotateX(var(--card-content)) rotateY(0deg); 
+  }  
 
-li:has(.hover-block.number2:hover) { 
-  transform: rotateX(var(--card-content)) rotateY(var(--card-content)); 
-}  
+  li:has(.hover-block.number2:hover) { 
+    transform: rotateX(var(--card-content)) rotateY(var(--card-content)); 
+  }  
 
-li:has(.hover-block.number3:hover) { 
-  transform: rotateX(0deg) rotateY(calc(-1 * var(--card-content))); 
-}  
+  li:has(.hover-block.number3:hover) { 
+    transform: rotateX(0deg) rotateY(calc(-1 * var(--card-content))); 
+  }  
 
-li:has(.hover-block.number4:hover) { 
-  transform: rotateX(0deg) rotateY(0deg); 
-}
+  li:has(.hover-block.number4:hover) { 
+    transform: rotateX(0deg) rotateY(0deg); 
+  }
 
-li:has(.hover-block.number5:hover) { 
-  transform: rotateX(0deg) rotateY(var(--card-content)); 
-}   
+  li:has(.hover-block.number5:hover) { 
+    transform: rotateX(0deg) rotateY(var(--card-content)); 
+  }   
 
-li:has(.hover-block.number6:hover) { 
-  transform: rotateX(calc(-1 * var(--card-content))) rotateY(calc(-1 * var(--card-content))); 
-} 
+  li:has(.hover-block.number6:hover) { 
+    transform: rotateX(calc(-1 * var(--card-content))) rotateY(calc(-1 * var(--card-content))); 
+  } 
 
-li:has(.hover-block.number7:hover) { 
-  transform: rotateX(calc(-1 * var(--card-content))) rotateY(0deg); 
-} 
+  li:has(.hover-block.number7:hover) { 
+    transform: rotateX(calc(-1 * var(--card-content))) rotateY(0deg); 
+  } 
 
-li:has(.hover-block.number8:hover) { 
-  transform: rotateX(calc(-1 * var(--card-content))) rotateY(var(--card-content)); 
-}  
+  li:has(.hover-block.number8:hover) { 
+    transform: rotateX(calc(-1 * var(--card-content))) rotateY(var(--card-content)); 
+  }  
 
 </style>
