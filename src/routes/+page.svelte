@@ -8,23 +8,20 @@
     const baseURL = "https://optcgapi.com/api/";
 
     try {
-      // 1. Alle sets ophalen
       const setsRes = await fetch(`${baseURL}allSets/`);
       if (!setsRes.ok) throw new Error(`Failed to fetch sets: ${setsRes.status}`);
       const sets = await setsRes.json();
 
-      // 2. Voor elke set de kaarten ophalen
       const allCardsArrays = await Promise.all(
         sets.map(async (set) => {
           const cardsRes = await fetch(`${baseURL}sets/${set.set_id}/`);
           if (!cardsRes.ok) throw new Error(`Failed to fetch set ${set.set_id}`);
           const setCards = await cardsRes.json();
-          // Voeg set_name toe aan elke kaart
+  
           return setCards.map(c => ({ ...c, set_name: set.set_name }));
         })
       );
 
-      // 3. Flatten naar één array
       cards = allCardsArrays.flat();
 
       console.log("Totaal aantal kaarten:", cards.length);
@@ -154,6 +151,43 @@
   to {
     opacity: 1;
   }
+}
+
+@supports (animation-timeline: view()){
+
+  img {
+    --card-content: 10deg;
+    animation: straighten linear both;
+    animation-timeline: view();
+    /* animation-range: entry 0% cover 50%; */
+    animation-range: entry 0% exit 100%;
+    /* animation-range: entry 40% exit 50%; */
+    transform: rotate(var(--card-content));
+}
+
+/* @keyframes straighten {
+  to{
+    --card-content: 0deg;
+    scale: 1;
+  }
+} */
+
+@keyframes straighten{
+  0% {
+    --card-content: 10deg;
+    scale: 0.8;
+  }
+  50% {
+    --card-content: 0deg;
+    scale: 1;
+  }
+  100% {
+    --card-content: 10deg;
+    scale: 0.8; 
+}
+
+}
+
 }
 
   img {
