@@ -1,56 +1,14 @@
 <script>
-  import { onMount } from "svelte";
-  import { on } from "svelte/events";
-
-  let cards = [];
-
-  async function getAllCards() {
-    const baseURL = "https://optcgapi.com/api/";
-
-    try {
-      const setsRes = await fetch(`${baseURL}allSets/`);
-      if (!setsRes.ok) throw new Error(`Failed to fetch sets: ${setsRes.status}`);
-      const sets = await setsRes.json();
-
-      const allCardsArrays = await Promise.all(
-        sets.map(async (set) => {
-          const cardsRes = await fetch(`${baseURL}sets/${set.set_id}/`);
-          if (!cardsRes.ok) throw new Error(`Failed to fetch set ${set.set_id}`);
-          const setCards = await cardsRes.json();
   
-          return setCards.map(c => ({ ...c, set_name: set.set_name }));
-        })
-      );
-
-      cards = allCardsArrays.flat();
-
-      console.log("Totaal aantal kaarten:", cards.length);
-    } catch (error) {
-      console.error("Fout bij ophalen kaarten:", error);
-    }
-  }
-
-  onMount(() => {
-    getAllCards();
-  });
-
-  onMount(() => {
-    document.addEventListener("DOMContentLoaded", () => {
-  document
-    .querySelectorAll("ul .houseDetail, .wrapper-lists ul li")
-    .forEach((li, index) => {
-      li.style.animationDelay = `${index * 0.2}s`;
-    });
-});
-  });
-
+  let { data } = $props();
+  let cards = data.cards;
 
 </script>
 
 <h1>Alle One Piece TCG Kaarten</h1>
-
-<!-- <ul>
-  {#each cards as card}
+<main>
+<ul>
+  {#each cards.slice(300, 900) as card}
     <li>
       <div>
       <picture>
@@ -67,9 +25,10 @@
       <p>{card.card_set_id} – {card.card_name} ({card.set_name})</p>
     </li>
   {/each}
-</ul> -->
+</ul>
+</main>
 
-<ul>
+<!-- <ul>
   {#each Array(200) as _, i}
     <li>
       <div>
@@ -83,7 +42,7 @@
       <p>SET-{i + 1} – Card {i + 1} (Dummy Set)</p>
     </li>
   {/each}
-</ul>
+</ul> -->
 
 
 <style>
@@ -159,19 +118,19 @@
     --card-content: 10deg;
     animation: straighten linear both;
     animation-timeline: view();
-    /* animation-range: entry 0% cover 50%; */
+    animation-range: entry 0% cover 50%;
     /* animation-range: entry 40% exit 50%; */
     transform: rotate(var(--card-content));
 }
 
-/* @keyframes straighten {
+@keyframes straighten {
   to{
     --card-content: 0deg;
     scale: 1;
   }
-} */
+}
 
-  @keyframes straighten{
+  /* @keyframes straighten{
     0% {
       --card-content: 10deg;
       scale: 0.8;
@@ -184,7 +143,7 @@
       --card-content: 10deg;
       scale: 0.8; 
     }
-  }
+  } */
 }
 
   img {
