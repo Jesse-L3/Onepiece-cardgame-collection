@@ -1,28 +1,41 @@
 <script>
-  
   let { data } = $props();
   let cards = data.cards;
 
+  let currentAmounts = $state(Array(cards.length).fill(0));
+  
+  function increaseAmount(idx) {
+    currentAmounts[idx]++;
+  }
+
+  function decreaseAmount(idx) {
+    if (currentAmounts[idx] > 0) {
+    currentAmounts[idx]--;
+  }
+}
 </script>
 
 <h1>Alle One Piece TCG Kaarten</h1>
 <main>
 <ul>
-  {#each cards.slice(300, 900) as card}
+  {#each cards.slice(300, 900) as card, idx}
     <li>
       <div>
-      <picture>
-        <source srcset={card.card_image} type="image/webp" />
-        <source srcset={card.card_image} type="image/jpeg" />
-        <img src={card.card_image} alt={card.card_name} loading="lazy" width="200" />
-      </picture>
-      <div class="hover-blocks">
-        {#each Array(9) as _, index }
-        <div class="hover-block number{index}" data-index={index}></div>
-        {/each}
-        </div>
+        <picture>
+          <source srcset={card.card_image} type="image/webp" />
+          <source srcset={card.card_image} type="image/jpeg" />
+          <img src={card.card_image} alt={card.card_name} loading="lazy" width="200" />
+          <div class="hover-blocks">
+            {#each Array(9) as _, index }
+              <div class="hover-block number{index}" data-index={index}></div>
+            {/each}
+          </div>
+        </picture>
       </div>
       <p>{card.card_set_id} – {card.card_name} ({card.set_name})</p>
+      <button onclick={() => increaseAmount(idx)} aria-label="Increase amount">+</button>
+      <p>{currentAmounts[idx]}</p>
+      <button onclick={() => decreaseAmount(idx)} aria-label="Decrease Amount">-</button>
     </li>
   {/each}
 </ul>
@@ -144,6 +157,28 @@
       scale: 0.8; 
     }
   } */
+}
+
+  picture {
+  display: inline-block;
+  position: relative;
+}
+
+picture {
+  display: block;
+}
+
+.hover-blocks {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  pointer-events: all;
+  /* Remove or adjust z-index if needed */
 }
 
   img {

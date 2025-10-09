@@ -1,9 +1,12 @@
 :root{
-  --primary-color: #00A6FF;
-  --text-dark: hsl(0, 0%, 11.37%);
-  --text-light: hsl(0, 0%, 100%);
-  --background-light: hsl(0 0% 96.5%);
-  --background-dark: #212121;
+  --primary-color: #BF0063;
+  --secondary-color: #FF7CC0;
+  --active-color: #650034;
+  --text-dark: #1B1B1B;
+  --text-light: #ffffff;
+  --standard-light-background: #ffffff;
+  --background-light: #FFF5FA;
+  --background-dark: #1B1B1B;
   --line-height-mobile: 1.5;
   --font: jakarta, sans-serif;
 
@@ -16,7 +19,17 @@
   --text-md: 1.5em; /* 24px */
   --text-lg: 1.625em; /* 26px */
 
+@font-face {
+  font-family: "StoryScript";
+  src: url(/fonts/StoryScript-Regular.ttf) format('truetype');
+  font-display: swap;
+} 
 
+@font-face {
+  font-family: "SuperSunday";
+  src: url(/fonts/SuperSunday-vn3MA.ttf) format('truetype');
+  font-display: swap;
+} 
   
 
 /* --- spacing --- */
