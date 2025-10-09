@@ -56,6 +56,7 @@ body {
 
 
 p {
+  font-family: var(--font);
   line-height: var(--line-height-mobile);
   font-size: var(--font-size-mobile);
   color: var(--text-light);
