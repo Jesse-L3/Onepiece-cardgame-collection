@@ -25,5 +25,6 @@
         top: 0;
         z-index: 2;
         display: flex;
+        width: 100vw;
     }
 </style>
