@@ -2,6 +2,8 @@
   let { data } = $props();
   let cards = data.cards;
 
+  // console.log(cards);
+
   let currentAmounts = $state(Array(cards.length).fill(0));
   
   function increaseAmount(idx) {
@@ -13,13 +15,75 @@
     currentAmounts[idx]--;
   }
 }
+
+
+
+const colorDecider = (color) => {
+  if (color === 'Red') {
+    return { PrimaryColor: '#D42F34', SecondaryColor: '#730F0F' };
+  } else if (color === 'Blue') {
+    return { PrimaryColor: '#10769B', SecondaryColor: '#0F5973' };
+  } else if (color === 'Green') {
+    return { PrimaryColor: '#2ECC71', SecondaryColor: '#27AE60' };
+  } else if (color === 'Yellow') {
+    return { PrimaryColor: '#F1C40F', SecondaryColor: '#F39C12' };
+  } else if (color === 'Purple') {
+    return { PrimaryColor: '#77377F', SecondaryColor: '#51026B' };
+  } else  if (color === 'Black') {
+    return { PrimaryColor: '#1B2020', SecondaryColor: '#000000' };
+
+
+  } else if (color === 'Yellow Black' || color === 'Black Yellow') {
+    return { PrimaryColor: '#F1C40F', SecondaryColor: '#1B2020' };
+  } else if (color === 'Blue Black' || color === 'Black Blue') {
+    return { PrimaryColor: '#10769B', SecondaryColor: '#1B2020' };
+  } else if (color === 'Red Black' || color === 'Black Red') {
+    return { PrimaryColor: '#D42F34', SecondaryColor: '#1B2020' };
+  } else if (color === 'Green Black' || color === 'Black Green') {
+    return { PrimaryColor: '#2ECC71', SecondaryColor: '#1B2020' };
+  } else if (color === 'Purple Black' || color === 'Black Purple') {
+    return { PrimaryColor: '#77377F', SecondaryColor: '#1B2020' };
+  }
+
+    else if (color === 'Red Green' || color === 'Green Red') {
+    return { PrimaryColor: '#D42F34', SecondaryColor: '#2ECC71' };
+  } else if (color === 'Red Blue' || color === 'Blue Red') {
+    return { PrimaryColor: '#D42F34', SecondaryColor: '#10769B' };
+  } else if (color === 'Red Yellow' || color === 'Yellow Red') {
+    return { PrimaryColor: '#D42F34', SecondaryColor: '#F1C40F' };
+  } else if (color === 'Red Purple' || color === 'Purple Red') {
+    return { PrimaryColor: '#D42F34', SecondaryColor: '#77377F' };
+  }
+
+    else if (color === 'Blue Green' || color === 'Green Blue') {
+    return { PrimaryColor: '#10769B', SecondaryColor: '#2ECC71' };
+  } else if (color === 'Blue Yellow' || color === 'Yellow Blue') {
+    return { PrimaryColor: '#10769B', SecondaryColor: '#F1C40F' };
+  } else if (color === 'Blue Purple' || color === 'Purple Blue') {
+    return { PrimaryColor: '#10769B', SecondaryColor: '#77377F' };
+  }
+
+    else if (color === 'Yellow Green' || color === 'Green Yellow') {
+    return { PrimaryColor: '#F1C40F', SecondaryColor: '#2ECC71' };  
+  } else if (color === 'Yellow Purple' || color === 'Purple Yellow') {
+    return { PrimaryColor: '#F1C40F', SecondaryColor: '#77377F' };  
+  }
+
+  else if (color === 'Purple Green' || color === 'Green Purple') {
+    return { PrimaryColor: '#2ECC71', SecondaryColor: '#2ECC71' };  
+  }
+  else {
+    return { PrimaryColor: 'null', SecondaryColor: 'null' };
+  }
+};
+
 </script>
 
 <h1>Alle One Piece TCG Kaarten</h1>
 <main>
 <ul>
-  {#each cards.slice(300, 900) as card, idx}
-    <li>
+  {#each cards.slice(0, 100) as card, idx}
+    <li style="--primary-color: {colorDecider(card.card_color).PrimaryColor}; --secondary-color: {colorDecider(card.card_color).SecondaryColor};">
       <div>
         <picture>
           <source srcset={card.card_image} type="image/webp" />
@@ -59,6 +123,7 @@
 
 
 <style>
+
 
   @property --text-animations {
     syntax: "<angle>";
@@ -110,6 +175,25 @@
     transition: transform 0.3s ease; 
   }
 
+  li::after , li::before{
+    content: '';
+    position: absolute;
+    height: 100%;
+        width: 100%;
+        background-image: linear-gradient(var(--primary-color), var(--secondary-color));
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: -1;
+        padding: 3px;
+        border-radius: 20px;
+  }
+
+    li::before {
+        filter: blur(1.5rem);
+        opacity: 0.5;
+        
+    }
 
   li p {
     color: var(--card-content);
@@ -184,12 +268,8 @@ picture {
   img {
     aspect-ratio: 300 / 419;
     height: auto;
-    width: 200px;
+    width: 100%;
     position: relative;
-
-    @media (min-width: 1080px) {
-      width: 400px;
-    }
   }
 
   .hover-blocks {
