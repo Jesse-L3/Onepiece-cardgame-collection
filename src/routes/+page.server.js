@@ -1,5 +1,5 @@
 // +page.server.js
-export async function load() {
+export async function load({ url }) {
   const baseURL = "https://optcgapi.com/api/";
 
   try {
@@ -13,17 +13,21 @@ export async function load() {
       sets.map(async (set) => {
         const cardsRes = await fetch(`${baseURL}sets/${set.set_id}/`);
         if (!cardsRes.ok) throw new Error(`Failed to fetch set ${set.set_id}`);
-      //   if (!cardsRes.ok) {
-      //     console.warn(`Geen gele kaarten in set ${set.set_id}`);
-      //   return [];
-      // }
         const setCards = await cardsRes.json();
 
         return setCards.map(c => ({ ...c, set_name: set.set_name }));
       })
     );
 
-    const cards = allCardsArrays.flat();
+    let cards = allCardsArrays.flat()
+    // .sort((a, b) => a.card_color.localeCompare(b.card_color)).reverse();
+
+    // const cardColor = url.searchParams.get("card_color");
+
+    // if (cardColor) {
+    //   cards = cards.filter((c) => c.card_color === cardColor);
+    // }
+      
 
     return {
       cards
