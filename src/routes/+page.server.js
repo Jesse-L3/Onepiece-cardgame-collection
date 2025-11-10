@@ -20,13 +20,13 @@ export async function load({ url }) {
     );
 
     let cards = allCardsArrays.flat()
-    // .sort((a, b) => a.card_color.localeCompare(b.card_color)).reverse();
+     .sort((a, b) => a.card_color.localeCompare(b.card_color));
 
-    // const cardColor = url.searchParams.get("card_color");
+    const cardColor = url.searchParams.get("card_color");
 
-    // if (cardColor) {
-    //   cards = cards.filter((c) => c.card_color === cardColor);
-    // }
+    if (cardColor) {
+      cards = cards.filter((c) => c.card_color === cardColor);
+    }
       
 
     return {

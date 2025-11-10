@@ -21,10 +21,15 @@
     }
 
     header {
-        position: sticky;
-        top: 0;
+        background-color: var(--primary-color);
+        position: fixed;
+        bottom: 0;
         z-index: 2;
         display: flex;
+        justify-content: center;
+        align-items: center;
         width: 100vw;
+        height: 3rem;
+        gap: 65px;
     }
 </style>

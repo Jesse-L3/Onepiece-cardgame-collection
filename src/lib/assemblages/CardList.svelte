@@ -1,6 +1,8 @@
 <script>
+  import { slide } from "svelte/transition";
+
     let { cards } = $props();
-    // console.log(cards);
+    console.log(cards);
 
     let currentAmounts = $state(Array(cards.length).fill(0));
   
@@ -78,7 +80,7 @@ const colorDecider = (color) => {
 </script>
 <h1>Alle One Piece TCG Kaarten</h1>
 <ul>
-  {#each cards.slice(0, 500) as card, idx}
+  {#each cards.slice(0, 60) as card, idx}
     <li style="--primary-color: {colorDecider(card.card_color).PrimaryColor}; --secondary-color: {colorDecider(card.card_color).SecondaryColor};">
       <div>
         <picture>
@@ -99,6 +101,7 @@ const colorDecider = (color) => {
       <p>{currentAmounts[idx]}</p>
       <button onclick={() => decreaseAmount(idx)} aria-label="Decrease Amount">-</button> -->
     </li>
+    <!-- <a href="https://www.cardmarket.com/en/OnePiece/Products/Singles/{card.set_name.replaceAll(" ", "-")}/{card.card_name.replace('(Alternate Art)', ' ').trim().replaceAll(" ", "-") }-{card.card_set_id}{card.card_name.includes('Alternate Art') ? '-V2' : '-V1'}">check Cardmarket</a> doesnt work for all--> 
   {/each}
 </ul>
 

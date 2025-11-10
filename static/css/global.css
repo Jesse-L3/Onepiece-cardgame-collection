@@ -1,10 +1,4 @@
 @font-face {
-  font-family: "StoryScript";
-  src: url(/fonts/StoryScript-Regular.ttf) format('truetype');
-  font-display: swap;
-} 
-
-@font-face {
   font-family: "SuperSunday";
   src: url(/fonts/SuperSunday-vn3MA.ttf) format('truetype');
   font-display: swap;
@@ -23,31 +17,35 @@
 } 
 
 :root{
-  --primary-color: #BF0063;
-  --secondary-color: #FF7CC0;
-  --active-color: #650034;
+  --primary-color: hsl(203, 100%, 84%);
+  --secondary-color: hsl(185, 100%, 65%);
+  --active-color: #25668E;
   --text-dark: #1B1B1B;
-  --text-light: #ffffff;
-  --standard-light-background: #ffffff;
-  --background-light: #FFF5FA;
-  --background-dark: #1B1B1B;
+  --text-light: hsl(203, 100%, 94%);
+  --standard-light: #ffffff;
+  --standard-dark: #000000;
+  --section-color: hsl(0, 0%, 18%);
+  --background-light: hsl(203, 100%, 94%);
+  --background-dark: hsl(0, 0%, 11%);
   --line-height-mobile: 1.5;
   --font: 'PlusJakartaSans', jakarta, sans-serif;
 
   /* ---------- Font sizes ---------- */
-  --text-xs3: 0.75em; /* 12px */
-  --text-xs2: 0.875em; /* 14px */
-  --text-xs: 1em; /* 16px */
-  --text-s: 1.0625em; /* 17px */
-  --text-sm: 1.25em; /* 20px */
-  --text-md: 1.5em; /* 24px */
-  --text-lg: 1.625em; /* 26px */
+  --text-header: 2rem; /* 32px */
+  --text-standard: 1rem; /* 16px */
 
-/* --- spacing --- */
---spacing-header-md: 0 0 1em 0.5em;
+  --svg-size: 2.5rem; /* 40px */
+  --svg-size-small: 1.25rem; /* 20px */
 
---spacing-section-md: 0 0 3em 0;
+  /* --- spacing --- */
+  --section-gap: 4.25rem;
+  --mini-gap: 0.688rem;
 
+  /* screen sizes */
+
+  --mobile-screen: 320px;
+  --tablet-screen: 768px;
+  --laptop-screen: 1024px;
 }
 
 * {
@@ -70,7 +68,7 @@ body {
 p {
   font-family: var(--font);
   line-height: var(--line-height-mobile);
-  font-size: var(--text-xs3);
+  font-size: var(--text-xs);
   color: var(--text-light);
 }
 
@@ -78,11 +76,4 @@ h1 {
   color: var(--text-light);
 }
 
-h2 {
-  color: var(--primary-color);
-  margin: var(--spacing-header-md);
-}
 
-section, article {
-  margin: var(--spacing-section-md);
-}
