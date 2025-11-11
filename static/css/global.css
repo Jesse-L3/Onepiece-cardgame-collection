@@ -27,12 +27,14 @@
   --section-color: hsl(0, 0%, 18%);
   --background-light: hsl(203, 100%, 94%);
   --background-dark: hsl(0, 0%, 11%);
+  --background-logo: hsl(0, 0%, 14%); 
   --line-height-mobile: 1.5;
   --font: 'PlusJakartaSans', jakarta, sans-serif;
 
   /* ---------- Font sizes ---------- */
   --text-header: 2rem; /* 32px */
   --text-standard: 1rem; /* 16px */
+  --text-small: 0.75rem; /* 12px */
 
   --svg-size: 2.5rem; /* 40px */
   --svg-size-small: 1.25rem; /* 20px */
@@ -43,9 +45,9 @@
 
   /* screen sizes */
 
-  --mobile-screen: 320px;
-  --tablet-screen: 768px;
-  --laptop-screen: 1024px;
+  /* --small-screen: 320px;
+  --large-screen: 768px; */
+  /* --laptop-screen: 1024px; */
 }
 
 * {

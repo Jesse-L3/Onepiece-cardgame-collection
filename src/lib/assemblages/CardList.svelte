@@ -79,7 +79,7 @@ const colorDecider = (color) => {
 
 </script>
 <h1>Alle One Piece TCG Kaarten</h1>
-<ul>
+<!-- <ul>
   {#each cards.slice(0, 60) as card, idx}
     <li style="--primary-color: {colorDecider(card.card_color).PrimaryColor}; --secondary-color: {colorDecider(card.card_color).SecondaryColor};">
       <div>
@@ -97,29 +97,35 @@ const colorDecider = (color) => {
        <p style={`--primary-color: ${colorDecider(card.card_color).PrimaryColor === '#1B2020' ? 'white' : colorDecider(card.card_color).PrimaryColor === '#77377F' ? '#FAADFF' : colorDecider(card.card_color).PrimaryColor === '#5DA9D2' ? '#96DAFF' : colorDecider(card.card_color).PrimaryColor === '#F1C40F' ? '#FFF692' : colorDecider(card.card_color).PrimaryColor === '#5DA9D2' ? '#96DAFF' : colorDecider(card.card_color).PrimaryColor === '#2ECC71' ? '#31D49E' : colorDecider(card.card_color).PrimaryColor === '#D42F34' ? '#FF6C70' : 'inherit'}`}>
         {card.card_set_id} – {card.card_name} ({card.set_name})
       </p>
-      <!-- <button onclick={() => increaseAmount(idx)} aria-label="Increase amount">+</button>
+      <button onclick={() => increaseAmount(idx)} aria-label="Increase amount">+</button>
       <p>{currentAmounts[idx]}</p>
-      <button onclick={() => decreaseAmount(idx)} aria-label="Decrease Amount">-</button> -->
+      <button onclick={() => decreaseAmount(idx)} aria-label="Decrease Amount">-</button>
     </li>
-    <!-- <a href="https://www.cardmarket.com/en/OnePiece/Products/Singles/{card.set_name.replaceAll(" ", "-")}/{card.card_name.replace('(Alternate Art)', ' ').trim().replaceAll(" ", "-") }-{card.card_set_id}{card.card_name.includes('Alternate Art') ? '-V2' : '-V1'}">check Cardmarket</a> doesnt work for all--> 
-  {/each}
-</ul>
-
-<!-- <ul>
-  {#each Array(200) as _, i}
-    <li>
-      <div>
-        <img src="./images/OP01-003.jpg" alt="Kaart {i + 1}" width="200" />
-        <div class="hover-blocks">
-        {#each Array(9) as _, index }
-        <div class="hover-block number{index}" data-index={index}></div>
-        {/each}
-        </div>
-      </div>
-      <p>SET-{i + 1} – Card {i + 1} (Dummy Set)</p>
-    </li>
+    <a href="https://www.cardmarket.com/en/OnePiece/Products/Singles/{card.set_name.replaceAll(" ", "-")}/{card.card_name.replace('(Alternate Art)', ' ').trim().replaceAll(" ", "-") }-{card.card_set_id}{card.card_name.includes('Alternate Art') ? '-V2' : '-V1'}">check Cardmarket</a> doesnt work for all 
   {/each}
 </ul> -->
+
+<ul>
+  {#each Array(200) as _, i}
+    <li style="--primary-color: {colorDecider('Red').PrimaryColor}; --secondary-color: {colorDecider('Red').SecondaryColor};">
+      <div>
+        <picture>
+          <source srcset="./images/OP01-003.jpg" type="image/webp" />
+          <source srcset="./images/OP01-003.jpg" type="image/jpeg" />
+          <img src="./images/OP01-003.jpg" alt={"Kaart " + (i + 1)} loading="lazy" width="200" />
+          <div class="hover-blocks">
+            {#each Array(9) as _, index}
+              <div class="hover-block number{index}" data-index={index}></div>
+            {/each}
+          </div>
+        </picture>
+      </div>
+      <p style={`--primary-color: ${colorDecider('Red').PrimaryColor === '#1B2020' ? 'white' : colorDecider('Red').PrimaryColor === '#77377F' ? '#FAADFF' : colorDecider('Red').PrimaryColor === '#5DA9D2' ? '#96DAFF' : colorDecider('Red').PrimaryColor === '#F1C40F' ? '#FFF692' : colorDecider('Red').PrimaryColor === '#2ECC71' ? '#31D49E' : colorDecider('Red').PrimaryColor === '#D42F34' ? '#FF6C70' : 'inherit'}`}>
+        SET-{i + 1} – Card {i + 1} (Dummy Set)
+      </p>
+    </li>
+  {/each}
+</ul>
 
 
 <style>

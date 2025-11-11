@@ -3,7 +3,7 @@
 </script>
 
 <nav class="nav-left">
-    <a href="">
+    <a href="/#">
         <div>
             <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M20 0L0 16V21.3333H2.5V40H10V26.6667H17.5V40H37.5V21.3333H40V16L35 12V2.66667H27.5V6L20 0ZM22.5 26.6667H30V34.6667H22.5V26.6667Z" fill="hsl(0, 0%, 11%)"/>
@@ -13,9 +13,9 @@
             </span>
         </div>
     </a>
-    <a href="">
+    <a href="/#">
         <div>
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg id="user" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M20.1999 21.2995C20.0833 21.2828 19.9333 21.2828 19.7999 21.2995C16.8666 21.1995 14.5332 18.7995 14.5332 15.8495C14.5332 12.8328 16.9666 10.3828 19.9999 10.3828C23.0166 10.3828 25.4666 12.8328 25.4666 15.8495C25.4499 18.7995 23.1333 21.1995 20.1999 21.2995Z" stroke="hsl(0, 0%, 11%)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M31.2333 32.3006C28.2666 35.0173 24.3333 36.6673 19.9999 36.6673C15.6666 36.6673 11.7333 35.0173 8.7666 32.3006C8.93327 30.7339 9.93327 29.2006 11.7166 28.0006C16.2833 24.9673 23.7499 24.9673 28.2833 28.0006C30.0666 29.2006 31.0666 30.7339 31.2333 32.3006Z" stroke="hsl(0, 0%, 11%)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M20.0002 36.6663C29.2048 36.6663 36.6668 29.2043 36.6668 19.9997C36.6668 10.7949 29.2048 3.33301 20.0002 3.33301C10.7954 3.33301 3.3335 10.7949 3.3335 19.9997C3.3335 29.2043 10.7954 36.6663 20.0002 36.6663Z" stroke="hsl(0, 0%, 11%)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
@@ -63,30 +63,82 @@
         align-items: center;
         justify-content: space-between;
         width: 50%;
+        gap: 68px;
+        @media (min-width: 768px){
+            display: flex;
+            width: unset;
+        }
     }
 
    .nav-left{
-        padding-left: 16px;
+       
+        @media (min-width: 768px){
+            justify-self: start;
+        }
     }
 
     .nav-right{
-        padding-right: 16px;
+        
+        @media (min-width: 768px){
+            justify-self: end;
+        }
     }
 
     .nav-center{
         display: none;
+        @media (min-width: 768px){
+            display: block;
+            margin: 0 auto;
+        }
+    }
+
+    .nav-center div{
+        background-color: var(--background-logo);
+        clip-path: polygon(100% 0, 85% 100%, 15% 100%, 0 0);
+        width: 268px;
+        height: 93px;
+    }
+
+    nav a{
+        text-decoration: none;
+        color: inherit;
+    }
+
+    nav a div, .nav-center div{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
     }
 
     nav a div svg{
-            aspect-ratio: 1/1;
-            width: var(--svg-size-small);
-            height: auto;
+        aspect-ratio: 1/1;
+        width: var(--svg-size-small);
+        height: auto;
+
+        @media (min-width: 768px){
+            width: var(--svg-size);
+        }
+    }
+
+    nav a div svg:not(#user) path{
+        @media (min-width: 768px){
+            fill: var(--primary-color);
+        }
+    }
+
+    #user path{
+        @media (min-width: 768px){
+            stroke: var(--primary-color);
+        }
     }
 
     nav span{
         display: none;
-        @media (min-width: 600px){
-            font-size: var(--text-xs);
+        @media (min-width: 768px){
+            display: block;
+            font-size: var(--text-small);
+            text-align: center;
         }
     }
 </style>
