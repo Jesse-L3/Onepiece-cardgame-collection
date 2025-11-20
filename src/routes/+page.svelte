@@ -1,5 +1,5 @@
 <script>
-  import {CardList} from '$lib/index.js';
+  import {CardList, Hero} from '$lib/index.js';
   let { data } = $props();
   let cards = data.cards;
 
@@ -7,4 +7,5 @@
 
 </script>
 
+<Hero />
 <!-- <CardList {cards}/> -->
