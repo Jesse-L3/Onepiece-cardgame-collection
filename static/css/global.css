@@ -70,7 +70,7 @@ body {
 p {
   font-family: var(--font);
   line-height: var(--line-height-mobile);
-  font-size: var(--text-xs);
+  font-size: var(--text-standard);
   color: var(--text-light);
 }
 

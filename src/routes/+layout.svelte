@@ -15,8 +15,6 @@
 <style>
 
     main {
-        text-align: center;
-       
         background-color: var(--background-dark);
     }
 
