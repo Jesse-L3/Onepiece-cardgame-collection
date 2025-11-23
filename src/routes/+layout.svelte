@@ -22,7 +22,7 @@
         background-color: var(--primary-color);
         position: fixed;
         bottom: 0;
-        z-index: 2;
+        z-index: 10;
         display: flex;
         justify-content: center;
         align-items: center;
