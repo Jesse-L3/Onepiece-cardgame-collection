@@ -8,4 +8,4 @@
 </script>
 
 <Hero />
-<!-- <CardList {cards}/> -->
+<CardList {cards}/>
