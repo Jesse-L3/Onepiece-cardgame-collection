@@ -3,7 +3,7 @@
   import { colorDecider } from '$lib/javascript-components/color-decider.js';
 
   let { cards } = $props();
-    console.log(cards);
+    // console.log(cards);
 
     let currentAmounts = $state(Array(cards.length).fill(0));
   

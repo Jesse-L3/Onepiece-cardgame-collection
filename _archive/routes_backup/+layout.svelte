@@ -4,15 +4,16 @@
     import { Navigation } from '$lib/index.js';
 </script>
 
-<!-- <header>
+<header>
     <Navigation />
-</header> -->
+</header>
 
 <main class="hoi">
     {@render children?.()}
-</main>
+  </main>
 
 <style>
+
     main {
         background-color: var(--background-dark);
     }
@@ -30,7 +31,7 @@
         gap: 65px;
         padding: 0 16px;
 
-        @media (min-width: 768px) {
+        @media (min-width: 768px){
             display: grid;
             align-content: center;
             grid-template-columns: repeat(3, 1fr);
