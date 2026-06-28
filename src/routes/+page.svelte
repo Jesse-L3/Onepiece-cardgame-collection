@@ -26,7 +26,7 @@ console.log(cards);
 				<div class="card-info">
 					<p class="card-name">{card.card_name || 'Unknown'}</p>
 					<p class="card-set">{card.set_name}</p>
-          <p>{card.card_set_id}</p>
+          			<p>Color: {card.card_color}</p>
 				</div>
 			</div>
 		{/each}

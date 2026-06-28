@@ -1,0 +1,62 @@
+@font-face {
+  font-family: "SuperSunday";
+  src: url(/fonts/SuperSunday-vn3MA.ttf) format('truetype');
+  font-display: swap;
+} 
+
+@font-face {
+  font-family: "PlusJakartaSans";
+  src: url(/fonts/PlusJakartaSans-VariableFont_wght.ttf) format('truetype');
+  font-display: swap;
+} 
+
+@font-face {
+  font-family: "PlusJakartaSansItalic";
+  src: url(/fonts/PlusJakartaSans-Italic-VariableFont_wght.ttf) format('truetype');
+  font-display: swap;
+} 
+
+:root{
+    /* font */
+    --font: 'PlusJakartaSans', jakarta, sans-serif;
+
+    /* colors */
+    --text-color: hsl(0 0% 100%);
+    --border-color: hsl(0 0% 86%);
+    --background: hsl(0 0% 10%);
+    --navbar-background: hsl(0 0% 11%);
+
+    /* element colors */
+    --element-red-primary: hsl(358 65% 51%);
+    --element-red-secondary: hsl(0 78% 23%);
+
+    --element-blue-primary: hsl(201 56% 59%);
+    --element-blue-secondary: hsl(195 77% 23%);
+
+    --element-green-primary: hsl(145 63% 49%);
+    --element-green-secondary: hsl(145 63% 36%);
+
+    --element-yellow-primary: hsl(48 89% 51%);
+    --element-yellow-secondary: hsl(33 90% 47%);
+
+    --element-purple-primary: hsl(293 40% 33%);
+    --element-purple-secondary: hsl(286 98% 21%);
+
+    --element-black-primary: hsl(0 8% 12%);
+    --element-black-secondary: hsl(0 0% 0%);
+
+    --current-element-primary: ;
+    --current-element-secondary: ;
+}
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font);
+  background-color: #1a1a1a;
+}
