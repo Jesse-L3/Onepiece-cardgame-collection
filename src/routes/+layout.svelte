@@ -1,7 +1,8 @@
 <script>
-    let { children } = $props();
-
+    import './layout.css';
     import { Navigation } from '$lib/index.js';
+
+    let { children } = $props();
 </script>
 
 <svelte:head>
@@ -29,7 +30,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 100vw;
+        width: 100%;
         height: 3rem;
         gap: 65px;
         padding: 0 16px;

@@ -1,124 +1,105 @@
 <script>
-    let { cards } = $props();
+import { onMount } from 'svelte';
+	let { cards } = $props();
+	import { colorDecider } from '$lib/javascript/color-decider.js';
+
+	let section;
+
+	onMount( () => {
+
+			
+			const cardItems = section.querySelectorAll('.card-item');
+
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting){
+						entry.target.classList.add('visible');
+						// observer.unobserve(entry.target);
+						console.log('Card is visible:', entry.target);
+					} else {
+						entry.target.classList.remove('visible');
+						
+					}
+				});
+				}, 
+				{threshold: 0.5}
+			);
+
+		cardItems.forEach(item => observer.observe(item));
+	});	
+
 </script>
-
-<div class="hero">
-		<h1>One Piece Card Collection</h1>
-		<p>Browse all available cards</p>
-	</div>
-
-	<div class="card-grid">
-		{#each cards as card (card.id)}
-			<div class="card-item">
-				<img 
+<section bind:this={section} class="mx-4">
+	<ul class="grid gap-16 grid-cols-6">
+		{#each cards as card}
+			<li style="--current-element-primary: {colorDecider(card.card_color).PrimaryColor}; --current-element-secondary: {colorDecider(card.card_color).SecondaryColor};" class="card-item py-16 flex flex-col items-center relative rounded-lg overflow-hidden isolate">
+				<img class="w-[144px] h-auto relative z-10 pb-[36px]"
 					src={card.card_image} 
 					alt={card.card_name || 'Card'} 
 					loading="lazy"
 				/>
-				<div class="card-info">
-					<p class="card-name">{card.card_name || 'Unknown'}</p>
-					<p class="card-set">{card.set_name}</p>
-          			<p>Color: {card.card_color}</p>
+				<div class="relative z-10">
+					<p class="text-xl text-center">{card.card_name || 'Unknown'} {card.set_id}</p>
 				</div>
-			</div>
+				<div class="absolute inset-0 z-0">
+					<circle class="w-60 h-60 rounded-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 blur-3xl opacity-80"></circle>
+				</div>
+			</li>
 		{/each}
-	</div>
+	</ul>
+</section>
 
-	{#if cards.length === 0}
-		<div class="no-cards">
-			<p>No cards found</p>
-		</div>
+{#if cards.length === 0}
+<section class="mx-4">
+	<ul class="grid gap-16 grid-cols-6">
+		{#each Array(200) as _, i}
+			<li class="group card-item py-16 flex flex-col items-center relative rounded-lg overflow-hidden isolate">
+				<img class="w-[144px] h-auto relative z-10 pb-[36px]"
+					src="./images/OP01-003.jpg" 
+					alt={"Kaart " + (i + 1)} 
+					loading="lazy"
+				/>
+				<div class="relative z-10">
+					<p class="text-xl text-center">SET-{i + 1} – Card {i + 1} (Dummy Set)</p>
+				</div>
+				<div class="absolute inset-0 z-0">
+					<circle class="w-60 h-60 group-hover:bg-red-500 rounded-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 blur-3xl opacity-80"></circle>
+				</div>
+			</li>
+		{/each}
+	</ul>
+</section>
 	{/if}
 
 
 <style>
-	main {
-		padding: 2rem;
-		max-width: 100%;
+
+	li{
+		border: 1px solid var(--border-color);
+		backdrop-filter: blur(46px);
+		background-color: var(--li-background);
 	}
 
-	.hero {
-		text-align: center;
-		margin-bottom: 3rem;
+	li:hover{
+		scale: 1.05;
+		transition: scale 0.3s ease-in-out;
 	}
 
-	.hero h1 {
-		font-size: 2.5rem;
-		margin-bottom: 0.5rem;
+	li:hover circle{
+		background-color: var(--current-element-primary);
+		transition: background-color 0.3s ease-in-out;
+		transition-delay: 0.3s;
 	}
 
-	.hero p {
-		font-size: 1.1rem;
-		color: #666;
+	.card-item{
+		opacity: 0;
+		transform: translateY(20px);
+		transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 	}
 
-	.card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-		gap: 1.5rem;
-		margin-top: 2rem;
+	:global(.card-item.visible){
+		opacity: 1;
+		transform: translateY(0);
 	}
 
-	.card-item {
-		display: flex;
-		flex-direction: column;
-		border-radius: 8px;
-		overflow: hidden;
-		background: #fff;
-		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-		transition: transform 0.2s, box-shadow 0.2s;
-		cursor: pointer;
-	}
-
-	.card-item:hover {
-		transform: translateY(-4px);
-		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-	}
-
-	.card-item img {
-		width: 100%;
-		display: block;
-	}
-
-	.card-info {
-		padding: 1rem;
-		flex-grow: 1;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-	}
-
-	.card-name {
-		font-weight: 600;
-		margin: 0 0 0.5rem 0;
-		font-size: 0.95rem;
-		line-height: 1.3;
-	}
-
-	.card-set {
-		font-size: 0.85rem;
-		color: #999;
-		margin: 0;
-	}
-
-	.no-cards {
-		text-align: center;
-		padding: 3rem;
-		color: #999;
-	}
-
-	@media (max-width: 768px) {
-		.card-grid {
-			grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-			gap: 1rem;
-		}
-
-		.card-item img {
-			height: 210px;
-		}
-
-		.hero h1 {
-			font-size: 1.8rem;
-		}
-	}
 </style>

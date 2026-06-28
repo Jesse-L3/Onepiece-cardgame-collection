@@ -7,14 +7,19 @@
 @font-face {
   font-family: "PlusJakartaSans";
   src: url(/fonts/PlusJakartaSans-VariableFont_wght.ttf) format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
   font-display: swap;
-} 
+}
 
 @font-face {
-  font-family: "PlusJakartaSansItalic";
+  font-family: "PlusJakartaSans";
   src: url(/fonts/PlusJakartaSans-Italic-VariableFont_wght.ttf) format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
   font-display: swap;
-} 
+}
+
 
 :root{
     /* font */
@@ -25,6 +30,7 @@
     --border-color: hsl(0 0% 86%);
     --background: hsl(0 0% 10%);
     --navbar-background: hsl(0 0% 11%);
+    --li-background: hsla(0 0% 22% / 0.49);
 
     /* element colors */
     --element-red-primary: hsl(358 65% 51%);
@@ -42,21 +48,22 @@
     --element-purple-primary: hsl(293 40% 33%);
     --element-purple-secondary: hsl(286 98% 21%);
 
-    --element-black-primary: hsl(0 8% 12%);
-    --element-black-secondary: hsl(0 0% 0%);
+    --element-black-primary: #F2F2F2;
+    --element-black-secondary: #8C8C8C;
 
     --current-element-primary: ;
     --current-element-secondary: ;
 }
-
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+/* use border-box globally to avoid padding/width overflow issues */
+html {
+  scroll-behavior: smooth;
 }
-
-body {
+  body {
   font-family: var(--font);
   background-color: #1a1a1a;
+  color: var(--text-color);
+}
+
+p {
+  font-weight: 800;
 }
