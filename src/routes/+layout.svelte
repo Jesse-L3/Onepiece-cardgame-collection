@@ -4,9 +4,13 @@
     import { Navigation } from '$lib/index.js';
 </script>
 
-<!-- <header>
+<svelte:head>
+	<title>One Piece Card Collection</title>
+</svelte:head>
+
+<header>
     <Navigation />
-</header> -->
+</header>
 
 <main class="hoi">
     {@render children?.()}
