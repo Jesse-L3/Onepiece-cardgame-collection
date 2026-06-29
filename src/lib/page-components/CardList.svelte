@@ -92,8 +92,14 @@
 
 	li{
 		border: 1px solid var(--border-color);
-		backdrop-filter: blur(46px);
+		
 		background-color: var(--li-background);
+	}
+
+	@-moz-document url-prefix() {
+		li{
+			backdrop-filter: blur(46px);
+		}
 	}
 
 	li:hover{

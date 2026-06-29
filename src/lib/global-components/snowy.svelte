@@ -4,6 +4,8 @@
 {/each}
 <style lang="scss">
     @use "sass:math";
+    @-moz-document url-prefix() {
+    
 
     @function random_range($min, $max) {
         $rand: math.random();
@@ -59,6 +61,6 @@
     //         $total: 10;
     //     }
     // }
-    
+}
     </style>
 
