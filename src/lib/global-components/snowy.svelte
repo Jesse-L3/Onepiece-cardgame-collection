@@ -6,7 +6,10 @@
     @use "sass:math";
     @-moz-document url-prefix() {
     
-
+        .snow {
+            box-shadow: 0px 0px 39px 5px var(--snow-color, var(--current-element-primary));
+        }
+    }
     @function random_range($min, $max) {
         $rand: math.random();
         $random_range: $min + math.floor($rand * (($max - $min) + 1));
@@ -24,7 +27,7 @@
         pointer-events:none;
         transition: background 0.3s ease-in-out;
         background: var(--snow-color, var(--current-element-primary));
-        box-shadow: 0px 0px 39px 5px var(--snow-color, var(--current-element-primary));
+
     
         @for $i from 1 through $total {
         $random-x: math.random(1000000) * 0.0001vw;
@@ -61,6 +64,5 @@
     //         $total: 10;
     //     }
     // }
-}
     </style>
 
