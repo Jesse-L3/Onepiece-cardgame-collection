@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	let { cards } = $props();
-	import { colorDecider } from '$lib/javaScript/color-decider.js';
+	import { colorDecider } from '$lib/JavaScript/color-decider.js';
 
 	// snow colors
 
