@@ -1,6 +1,6 @@
 <script>
     import './layout.css';
-    import { Navigation } from '$lib/index.js';
+    import { Navigation, Snowy } from '$lib/index.js';
 
     let { children } = $props();
 </script>
@@ -12,7 +12,7 @@
 <header>
     <Navigation />
 </header>
-
+<Snowy />
 <main class="hoi">
     {@render children?.()}
 </main>

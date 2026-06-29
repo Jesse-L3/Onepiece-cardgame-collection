@@ -1,7 +1,17 @@
 <script>
-import { onMount } from 'svelte';
+	import { onMount } from 'svelte';
 	let { cards } = $props();
 	import { colorDecider } from '$lib/javascript/color-decider.js';
+
+	// snow colors
+
+	const setSNowColor = (color) => {
+		document.documentElement.style.setProperty('--snow-color', color);
+	}
+
+	const DefaultSnowcolor = () => {
+		document.documentElement.style.setProperty('--snow-color', 'white');
+	}
 
 	let section;
 
@@ -22,7 +32,7 @@ import { onMount } from 'svelte';
 					}
 				});
 				}, 
-				{threshold: 0.5}
+				{threshold: 0.2}
 			);
 
 		cardItems.forEach(item => observer.observe(item));
@@ -30,9 +40,15 @@ import { onMount } from 'svelte';
 
 </script>
 <section bind:this={section} class="mx-4">
-	<ul class="grid gap-16 grid-cols-6">
+	<ul class="grid gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
 		{#each cards as card}
-			<li style="--current-element-primary: {colorDecider(card.card_color).PrimaryColor}; --current-element-secondary: {colorDecider(card.card_color).SecondaryColor};" class="card-item py-16 flex flex-col items-center relative rounded-lg overflow-hidden isolate">
+			<li onmouseenter={() => setSNowColor(colorDecider(card.card_color).PrimaryColor)}
+				ontouchstart={() => setSNowColor(colorDecider(card.card_color).PrimaryColor)}
+				onmouseleave={DefaultSnowcolor}
+				style="--current-element-primary: {colorDecider(card.card_color).PrimaryColor}; 
+				--current-element-secondary: {colorDecider(card.card_color).SecondaryColor};" 
+				class="card-item py-16 flex flex-col items-center relative rounded-lg overflow-hidden isolate"
+			>
 				<img class="w-[144px] h-auto relative z-10 pb-[36px]"
 					src={card.card_image} 
 					alt={card.card_name || 'Card'} 
@@ -93,7 +109,7 @@ import { onMount } from 'svelte';
 
 	.card-item{
 		opacity: 0;
-		transform: translateY(20px);
+		transform: translateY(40px);
 		transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 	}
 

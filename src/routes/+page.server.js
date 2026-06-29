@@ -15,14 +15,18 @@ export async function load({ url }) {
       })
     );
 
-    let cards = allCardsArrays.flat()
-      .sort((a, b) => a.card_color.localeCompare(b.card_color));
+    let cards = allCardsArrays.flat();
 
-    const cardColor = url.searchParams.get("card_color");
-
-    if (cardColor) {
-      cards = cards.filter((c) => c.card_color === cardColor);
+    // Fisher-Yates shuffle so order is random each page load
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
     }
+
+    cards = shuffle(cards);
 
     return { cards };
   } catch (error) {
