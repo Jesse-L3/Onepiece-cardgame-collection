@@ -5,12 +5,14 @@
 
 	// snow colors
 
-	const setSNowColor = (color) => {
-		document.documentElement.style.setProperty('--snow-color', color);
+	const setSNowColor = (primary, secondary) => {
+		document.documentElement.style.setProperty('--snow-color', primary);
+		document.documentElement.style.setProperty('--snow-color-secondary', secondary);
 	}
 
 	const DefaultSnowcolor = () => {
 		document.documentElement.style.setProperty('--snow-color', 'white');
+		document.documentElement.style.setProperty('--snow-color-secondary', 'lightgray');
 	}
 
 	let section;
@@ -42,8 +44,8 @@
 <section bind:this={section} class="mx-4">
 	<ul class="grid gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
 		{#each cards as card}
-			<li onmouseenter={() => setSNowColor(colorDecider(card.card_color).PrimaryColor)}
-				ontouchstart={() => setSNowColor(colorDecider(card.card_color).PrimaryColor)}
+			<li onmouseenter={() => setSNowColor(colorDecider(card.card_color).PrimaryColor, colorDecider(card.card_color).SecondaryColor)}
+				ontouchstart={() => setSNowColor(colorDecider(card.card_color).PrimaryColor,colorDecider(card.card_color).SecondaryColor)}
 				onmouseleave={DefaultSnowcolor}
 				style="--current-element-primary: {colorDecider(card.card_color).PrimaryColor}; 
 				--current-element-secondary: {colorDecider(card.card_color).SecondaryColor};" 
@@ -92,8 +94,8 @@
 
 	li{
 		border: 1px solid var(--border-color);
-		
 		background-color: var(--li-background);
+		transition: transform 0.3s ease-in-out;
 	}
 
 	@-moz-document url-prefix() {
@@ -103,8 +105,15 @@
 	}
 
 	li:hover{
-		scale: 1.05;
-		transition: scale 0.3s ease-in-out;
+		transform: scale(1.05);
+	}
+
+	li:active img{
+		scale: 1.5;
+	}
+
+	li img {
+		transition: scale 0.1s ease-in-out;
 	}
 
 	li:hover circle{
