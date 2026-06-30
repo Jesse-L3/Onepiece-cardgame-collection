@@ -2,6 +2,8 @@ import fetchJson from '$lib/JavaScript/fetch-json.js';
 
 export async function load({ url }) {
   const baseURL = "https://optcgapi.com/api/";
+  let cardName = url.searchParams.get('n') ?? '';
+    console.log("Load:", url.search);
 
   try {
     // Alle sets ophalen
@@ -17,6 +19,10 @@ export async function load({ url }) {
 
     let cards = allCardsArrays.flat();
 
+    if (cardName) {
+      cards = cards.filter(card => card.card_name.toLowerCase().includes(cardName.toLowerCase()));
+    }
+
     // Fisher-Yates shuffle so order is random each page load
     function shuffle(array) {
       for (let i = array.length - 1; i > 0; i--) {
@@ -28,9 +34,9 @@ export async function load({ url }) {
 
     cards = shuffle(cards);
 
-    return { cards };
+    return { cards, search: cardName };
   } catch (error) {
     console.error("Fout bij ophalen kaarten:", error);
-    return { cards: [] };
+    return { cards: [], searchParams: cardName };
   }
 }

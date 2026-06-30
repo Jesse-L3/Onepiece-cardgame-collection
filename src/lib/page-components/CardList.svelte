@@ -69,7 +69,7 @@
 
 {#if cards.length === 0}
 <section class="mx-4">
-	<ul class="grid gap-16 grid-cols-6">
+	<ul class="grid gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
 		{#each Array(200) as _, i}
 			<li class="group card-item py-16 flex flex-col items-center relative rounded-lg overflow-hidden isolate">
 				<img class="w-[144px] h-auto relative z-10 pb-[36px]"
@@ -123,7 +123,7 @@
 	}
 
 	.card-item{
-		opacity: 0;
+		opacity: 1;
 		transform: translateY(40px);
 		transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 	}
