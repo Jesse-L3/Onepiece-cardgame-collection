@@ -1,3 +1,4 @@
+ <svelte:options css="injected" />
 {#each Array(200)}
     <!-- <svg class="snow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5"></circle></svg>  -->
     <div class="snow"></div>
@@ -8,14 +9,11 @@
     @-moz-document url-prefix() {
 
         .snow:nth-child(odd){
-            background: var(--snow-color, var(--current-element-primary));
             box-shadow: 0px 0px 39px 5px var(--snow-color, var(--current-element-primary));
         }
     
         .snow:nth-child(even){
-            background: var(--snow-color-secondary, var(--current-element-secondary));
-            box-shadow: 0px 0px 39px 5px var(--snow-color-secondary, var(--current-element-secondary));
-            
+            box-shadow: 0px 0px 39px 5px var(--snow-color-secondary, var(--current-element-secondary));          
         }
     }
     @function random_range($min, $max) {
@@ -34,8 +32,6 @@
         border-radius: 50%;
         pointer-events:none;
         transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-        
-
     
         @for $i from 1 through $total {
         $random-x: math.random(1000000) * 0.0001vw;
@@ -66,6 +62,13 @@
         }
     } 
 
+    .snow:nth-child(odd){
+        background: var(--snow-color, var(--current-element-primary));
+    }
+
+    .snow:nth-child(even){
+        background: var(--snow-color-secondary, var(--current-element-secondary));          
+    }
 
     // @media screen and (max-width: 700px) {
     //     .snow:nth-child(n + 11) {

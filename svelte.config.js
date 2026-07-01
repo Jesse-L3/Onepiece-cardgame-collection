@@ -4,9 +4,9 @@ import preprocess from 'svelte-preprocess';
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	preprocess: preprocess({
-		scss: {
-			additionalData: `@import './src/styles/variables.scss';`
-		}
+	scss: {
+        includePaths: ['src']
+    }
 	}),
 	kit: {
 		// adapter-auto only supports some environments, see https://kit.svelte.dev/docs/adapter-auto for a list.
